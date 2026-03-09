@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================================================
+   FONT FACES — Figtree (body) + Cabinet Grotesk (display)
+   ========================================================= */
+@font-face {
+  font-family: "Figtree";
+  src: url("/assets/fonts/Figtree.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src: url("/assets/fonts/CabinetGrotesk-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* =========================================================
+   DESIGN TOKENS — Water / Glassmorphism Theme
+   ========================================================= */
+:root {
+  /* Core palette */
+  /* #0077FF electric blue → oklch(0.55 0.22 265) */
+  --primary:         0.55 0.22 265;
+  --primary-foreground: 1 0 0;
+
+  /* #E0F2FE sky → oklch(0.95 0.04 220) */
+  --background:      0.97 0.02 220;
+  --foreground:      0.15 0.02 265;
+
+  /* Cards / glass panels */
+  --card:            0.99 0.005 220;
+  --card-foreground: 0.15 0.02 265;
+
+  --popover:         0.99 0.005 220;
+  --popover-foreground: 0.15 0.02 265;
+
+  --secondary:       0.92 0.04 220;
+  --secondary-foreground: 0.25 0.08 265;
+
+  --muted:           0.93 0.03 220;
+  --muted-foreground: 0.55 0.05 240;
+
+  --accent:          0.92 0.06 220;
+  --accent-foreground: 0.25 0.12 265;
+
+  --destructive:     0.60 0.20 27;
+  --destructive-foreground: 1 0 0;
+
+  --border:          0.88 0.04 220;
+  --input:           0.88 0.04 220;
+  --ring:            0.55 0.22 265;
+
+  --radius: 1rem;
+
+  /* Chart colors */
+  --chart-1: 0.55 0.22 265;
+  --chart-2: 0.65 0.18 200;
+  --chart-3: 0.75 0.12 190;
+  --chart-4: 0.82 0.08 210;
+  --chart-5: 0.90 0.05 215;
+
+  /* Sidebar */
+  --sidebar:                  0.97 0.02 220;
+  --sidebar-foreground:       0.15 0.02 265;
+  --sidebar-primary:          0.55 0.22 265;
+  --sidebar-primary-foreground: 1 0 0;
+  --sidebar-accent:           0.92 0.04 220;
+  --sidebar-accent-foreground: 0.25 0.08 265;
+  --sidebar-border:           0.88 0.04 220;
+  --sidebar-ring:             0.55 0.22 265;
+}
+
+/* =========================================================
+   BASE STYLES
+   ========================================================= */
+@layer base {
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: "Figtree", -apple-system, "SF Pro Display", BlinkMacSystemFont,
+      "Segoe UI", sans-serif;
+    color-scheme: light;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    min-height: 100dvh;
+    background: linear-gradient(160deg, #E0F2FE 0%, #ffffff 60%, #f0f9ff 100%);
+  }
+}
+
+/* =========================================================
+   WAVE ANIMATION
+   ========================================================= */
+@keyframes waveScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes waveScroll2 {
+  0%   { transform: translateX(-25%); }
+  100% { transform: translateX(-75%); }
+}
+
+@keyframes bubblePulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.012); }
+}
+
+@keyframes dropIn {
+  0%   { opacity: 0; transform: translateY(-8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  0%   { opacity: 0; transform: translateY(24px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.wave-scroll-1 {
+  animation: waveScroll 5s linear infinite;
+}
+
+.wave-scroll-2 {
+  animation: waveScroll2 7s linear infinite;
+}
+
+.bubble-pulse {
+  animation: bubblePulse 3s ease-in-out infinite;
+}
+
+.drop-in {
+  animation: dropIn 0.35s ease-out both;
+}
+
+.slide-up {
+  animation: slideUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* =========================================================
+   GLASS PANEL UTILITY
+   ========================================================= */
+.glass {
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow:
+    0 4px 24px rgba(0, 119, 255, 0.08),
+    0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.glass-strong {
+  backdrop-filter: blur(20px) saturate(1.6);
+  -webkit-backdrop-filter: blur(20px) saturate(1.6);
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.92);
+  box-shadow:
+    0 8px 32px rgba(0, 119, 255, 0.12),
+    0 2px 8px rgba(0, 0, 0, 0.06);
+}
